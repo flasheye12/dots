@@ -1,1 +1,22 @@
-
+{
+  "name": "dots.js",
+  "version": "0.0.0",
+  "description": "javascript library for creating text and image by dots",
+  "homepage": "https://github.com/flasheye12/dots",
+  "author": "Hyun-Jin Park <flasheye12@gmail.com>",
+  "keywords": [
+    "dots",
+    "canvas"
+  ],
+  "license": "MIT",
+  "main": [
+    "src/dots.js",
+    "dist/dots.min.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "demo",
+    "test",
+    "tests"
+  ]
+}
