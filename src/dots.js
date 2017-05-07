@@ -1,6 +1,4 @@
-import animate from "./util/animate";
-var Dots = {
-  obj: animate 
+import * as effect from './util/effect';
+var Dots = { 
 };
-
-export {Dots};
+export default Dots;

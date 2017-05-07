@@ -12,6 +12,7 @@ const commonJs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
+const eslint = require('gulp-eslint');
 
 const package = require('./package.json');
 
@@ -44,13 +45,20 @@ const processJs = lazypipe()
 gulp.task('js', () => {
   gulp.src(package.files[0])
 
-    .pipe(errorNotifier())
+    // .pipe(errorNotifier())
     .pipe(processJs())
     .pipe(gulp.dest('dist/'))
     
     .pipe(gulpif(!argv.debug, uglify()))
     .pipe(rename(path => path.extname = '.min.js'))
     .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('lint', () => {
+  return gulp.src('src/**/*.js')
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(gulpif(!argv.debug, eslint.failAfterError()));
 });
 
 gulp.task('watch', () => {
@@ -70,6 +78,6 @@ gulp.task('serve', ['js'], () => {
     }
   });
   
-  gulp.watch('src/*.js', ['js-watch']);
+  gulp.watch('src/**/*.js', ['js-watch']);
   gulp.watch('demo/**/*').on('change', browserSync.reload);
 });
