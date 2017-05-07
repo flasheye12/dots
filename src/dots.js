@@ -1,1 +1,6 @@
-console.log('dots.js');
+import animate from "./util/animate";
+var Dots = {
+  obj: animate 
+};
+
+export {Dots};
